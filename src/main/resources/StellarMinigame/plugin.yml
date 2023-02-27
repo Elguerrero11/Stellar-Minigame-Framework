@@ -1,0 +1,5 @@
+main: com.elguerrero.stellarminigameframework.StellarFramework
+name: "StellarMinigameFramework"
+author: "Elguerrero|MoonWalker"
+version: '1.5.3'
+api-version: 1.19

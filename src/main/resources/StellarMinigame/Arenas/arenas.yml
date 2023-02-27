@@ -1,0 +1,10 @@
+Lobby_Spawn:
+    World: world
+    X: 0.5
+    Y: 64.0
+    Z: 0.5
+    Yaw: 0.0
+    Pitch: 0.0
+
+
+Config_Version: 1.0
