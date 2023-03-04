@@ -1,12 +1,10 @@
 package com.elguerrero.stellarminigameframework;
 
-import com.elguerrero.stellarminigameframework.config.StellarMinigameConfig;
+import com.elguerrero.stellarframework.utils.StellarUtils;
 import com.elguerrero.stellarminigameframework.config.StellarMinigameMessages;
-import com.elguerrero.stellarminigameframework.stellarframework.utils.StellarUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.io.IOException;
 import java.util.*;
 
 public abstract class StellarMinigameUtils implements ArenaStructure {
@@ -17,79 +15,46 @@ public abstract class StellarMinigameUtils implements ArenaStructure {
 	 */
 	public static void joinRandomArena(Player player) {
 
-		List<String> arenasList = new ArrayList<>(Arena.getARENAS());
-
+		List<Arena> arenasList = Arena.getARENAS_LIST();
 
 		if (arenasList.isEmpty()) {
+
 			StellarUtils.sendMessagePlayer(player, StellarMinigameMessages.getNO_ARENA_AVALIBLE());
-			return;
+
+		} else {
+
+			Arena randomArena = arenasList.get(new Random().nextInt(arenasList.size()));
+
+			randomArena.playerJoinArena(player);
+
 		}
-
-		String randomArena = arenasList.get(new Random().nextInt(arenasList.size()));
-
-
-		playerJoinArena(player, randomArena);
-		StellarUtils.sendMessagePlayer(player, StellarMinigameMessages.getARENA_JOIN().replaceAll("%arena%", randomArena));
-
-	}
-
-
-	/**
-	 * Method for add the player to a arena
-	 *
-	 * @param player    - The player to add
-	 * @param arenaName - The name of the arena
-	 */
-	public static void playerJoinArena(Player player, String arenaName) {
-
-		Set<UUID> arenaPlayersList = Arena.getPLAYERS_IN_EACH_ARENA().get(arenaName);
-
-		arenaPlayersList.stream()
-				.map(Bukkit::getPlayer)
-				.filter(Player -> arenaPlayersList.contains(player.getUniqueId()))
-				.forEach(Player -> StellarUtils.sendMessagePlayer(Player, StellarMinigameMessages.getPLAYER_JOIN_ARENA().replaceAll("%player%", player.getName())));
-
-		Arena.getPLAYERS_IN_ALL_ARENAS().put(player.getUniqueId(), arenaName);
-
-		arenaPlayersList.add(player.getUniqueId());
-
-		StellarUtils.sendMessagePlayer(player, StellarMinigameMessages.getARENA_JOIN());
-
 	}
 
 	/**
-	 * Method for remove the player from a arena
-	 *
-	 * @param player    - The player to remove
-	 * @param arenaName - The name of the arena
-	 */
-	public static void playerLeaveArena(Player player, String arenaName) {
-
-		Set<UUID> arenaPlayersList = Arena.getPLAYERS_IN_EACH_ARENA().get(arenaName);
-
-
-		Arena.getPLAYERS_IN_ALL_ARENAS().remove(player.getUniqueId());
-
-		arenaPlayersList.remove(player.getUniqueId());
-
-		arenaPlayersList.stream()
-				.map(Bukkit::getPlayer)
-				.filter(Player -> arenaPlayersList.contains(player.getUniqueId()))
-				.forEach(Player -> StellarUtils.sendMessagePlayer(Player, StellarMinigameMessages.getPLAYER_LEAVE_ARENA().replaceAll("%player%", player.getName())));
-
-		StellarUtils.sendMessagePlayer(player, StellarMinigameMessages.getARENA_LEAVE());
-
-	}
-
-	/**
-	 * Check if the player is in an arena and return the name of the arena
+	 * Method for check if a player is in an arena
 	 *
 	 * @param player - The player to check
-	 * @return - The name of the arena or null if the player is not in an arena
+	 * @return - True if the player is in an arena, false if not
 	 */
-	public static String playerIsInArena(Player player) {
+	public static boolean playerIsInAnArena(Player player) {
 
-		return Arena.getPLAYERS_IN_ALL_ARENAS().getOrDefault(player.getUniqueId(), null);
+		if (Arena.getPLAYERS_IN_ARENAS().containsKey(player.getUniqueId())) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	/**
+	 * Check for see in which arena is the player
+	 *
+	 * @param player - The player to check
+	 * @return - The name of the arena
+	 */
+	public static Arena inWhichArenaIsThePlayer(Player player) {
+
+		return Arena.getPLAYERS_IN_ARENAS().get(player.getUniqueId());
 
 	}
 
@@ -99,52 +64,34 @@ public abstract class StellarMinigameUtils implements ArenaStructure {
 
 	public static void onLoad() {
 
-		checkArenasFolder();
-		checkArenasConfigFile();
-		checkAddonsFolder();
-		StellarMinigameMessages.loadMessages();
-		StellarMinigameConfig.loadMinigameConfig();
+		StellarUtils.pluginFileExist(Arena.getARENAS_FOLDER(), true);
+		StellarUtils.pluginFileExist(Arena.getARENAS_CONFIG_FILE(), false);
+		StellarUtils.pluginFileExist(Arena.getADDONS_FOLDER(), true);
+
 
 	}
 
-
-	// METHODS FOR CHECK THE FILES AND FOLDERS
-
 	/**
-	 * Method for check if the global arenas config file exist, if not, create it
+	 * Method for write the basic things in the arenas.yml file if the file is empty
+	 * <p>
+	 * TODO: Rename the method maybe
+	 * TODO: Add the basic things like the mainlobby spawn
+	 * TODO: Add a try and catch method to all the method code
 	 */
+	public static void writeBasicArenaConfig() {
 
-	public static void checkArenasConfigFile() {
-
-		try {
-			if (!Arena.getARENAS_CONFIG_FILE().exists()) {
-				Arena.getARENAS_CONFIG_FILE().createNewFile();
-			}
-		} catch (IOException ex) {
-
-			StellarUtils.logException(ex);
-
-		}
 	}
 
 	/**
-	 * Check if the Addons folder exist, if not, create it
+	 * Method for get a list of the names of all the arenas
+	 *
+	 * @return - A list of the names of all the arenas
 	 */
-	public static void checkAddonsFolder() {
+	public static List<String> getArenaNames() {
 
-		if (!Arena.getADDONS_FOLDER().exists()) {
-			Arena.getADDONS_FOLDER().mkdir();
-		}
-	}
+		Set<String> arenaNameSet = Arena.getARENASLISTHASHMAP().keySet();
 
-	/**
-	 * Check if the Arenas folder exist, if not, create it
-	 */
-	public static void checkArenasFolder() {
-
-		if (!Arena.getARENAS_FOLDER().exists()) {
-			Arena.getARENAS_FOLDER().mkdir();
-		}
+		return new ArrayList<>(arenaNameSet);
 	}
 
 }

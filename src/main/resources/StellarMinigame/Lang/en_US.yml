@@ -47,3 +47,9 @@ Arena_Leave: "&aYou have left the arena &e%arena_name%&a."
 Arena_Already_Exist: "&cThere is already an arena with that name."
 
 Not_In_Arena: "&cYou are not in an arena so you can't leave."
+
+Arena_Status_Waiting: "&aWaiting"
+Arena_Status_Starting: "&eStarting"
+Arena_Status_Playing: "&ePlaying"
+Arena_Status_Ending: "&cEnding"
+Arena_Status_Restarting: "&cRestarting"

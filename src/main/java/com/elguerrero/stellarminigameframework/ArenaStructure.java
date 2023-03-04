@@ -1,6 +1,6 @@
 package com.elguerrero.stellarminigameframework;
 
-import java.util.Set;
+import java.util.HashMap;
 
 public interface ArenaStructure {
 
@@ -19,19 +19,5 @@ public interface ArenaStructure {
 	 * This method is called when the game end
 	 */
 	void endGame();
-
-	default void start() {
-		startPreGame();
-		startGame();
-		endGame();
-	}
-
-	static Set<String> getAllArenas(){
-		return Arena.getARENAS();
-	}
-
-	static void getAllPlayersInArenas(){
-		Arena.getPLAYERS_IN_ALL_ARENAS();
-	}
 
 }

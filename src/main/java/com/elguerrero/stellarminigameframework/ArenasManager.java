@@ -1,6 +1,6 @@
 package com.elguerrero.stellarminigameframework;
 
-import com.elguerrero.stellarframework.StellarPluginFramework;
+import com.elguerrero.stellarframework.StellarPlugin;
 import com.elguerrero.stellarframework.utils.StellarUtils;
 import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.dejvokep.boostedyaml.dvs.versioning.BasicVersioning;
@@ -21,7 +21,7 @@ public abstract class ArenasManager {
 	// File variables
 	@Getter
 	private static YamlDocument CONFIG_FILE = null;
-	private static final InputStream resourceStream = StellarPluginFramework.getINSTANCE().getResource("/StellarMinigame/Arenas/arenas.yml");
+	private static final InputStream resourceStream = StellarPlugin.getPLUGIN_INSTANCE().getResource("/StellarMinigame/Arenas/arenas.yml");
 
 
 	// The config options
@@ -43,10 +43,10 @@ public abstract class ArenasManager {
 	public static void loadConfigFile() {
 
 		try {
-			CONFIG_FILE = YamlDocument.create(new File(StellarPluginFramework.getPLUGIN_FOLDER(), "arenas.yml"), Objects.requireNonNull(resourceStream),
+			CONFIG_FILE = YamlDocument.create(new File(StellarPlugin.getPLUGIN_FOLDER(), "arenas.yml"), Objects.requireNonNull(resourceStream),
 					GeneralSettings.DEFAULT, LoaderSettings.builder().setAutoUpdate(true).build(), DumperSettings.DEFAULT, UpdaterSettings.builder().setVersioning(new BasicVersioning("Config_Version")).build());
 		} catch (IOException ex) {
-			StellarUtils.sendErrorMessageConsole(ex);
+			StellarUtils.logErrorException(ex,"default");
 		}
 
 	}
