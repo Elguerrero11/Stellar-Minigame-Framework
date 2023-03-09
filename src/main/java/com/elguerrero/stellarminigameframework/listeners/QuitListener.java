@@ -1,7 +1,6 @@
 package com.elguerrero.stellarminigameframework.listeners;
 
-import com.elguerrero.stellarminigameframework.StellarMinigameUtils;
-import com.elguerrero.stellarminigameframework.Arena;
+import com.elguerrero.stellarminigameframework.StellarArena;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,9 +16,9 @@ public class QuitListener implements Listener {
 		Player player = event.getPlayer();
 		UUID playerUUID = player.getUniqueId();
 
-		if (Arena.getPLAYERS_IN_ARENAS().containsKey(playerUUID)) {
+		if (StellarArena.getPLAYERS_IN_ARENAS().containsKey(playerUUID)) {
 
-			Arena.getPLAYERS_IN_ARENAS().get(playerUUID).playerLeaveArena(player);
+			StellarArena.getPLAYERS_IN_ARENAS().get(playerUUID).playerLeaveArena(player);
 
 		}
 	}

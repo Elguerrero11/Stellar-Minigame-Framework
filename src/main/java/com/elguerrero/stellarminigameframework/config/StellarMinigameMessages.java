@@ -9,6 +9,12 @@ import lombok.Getter;
 public abstract class StellarMinigameMessages extends StellarMessages implements StellarMessagesManager {
 
 	@Getter
+	private static String ARENA_NO_IN_WAITING = null;
+	@Getter
+	private static String PLAYER_ALREADY_IN_ARENA = null;
+	@Getter
+	private static String NO_ARENA = null;
+	@Getter
 	private static String NO_ARENA_AVALIBLE = null;
 	@Getter
 	private static String ARENA_JOIN = null;
@@ -22,8 +28,10 @@ public abstract class StellarMinigameMessages extends StellarMessages implements
 	private static String PLAYER_JOIN_ARENA = null;
 	@Getter
 	private static String PLAYER_LEAVE_ARENA = null;
+	@Getter
+	private static String ARENA_CANT_BE_DELETED = null;
 
-	// Arena status messages
+	// StellarArena status messages
 
 	@Getter
 	private static String ARENA_STATUS_WAITING = null;
@@ -39,6 +47,10 @@ public abstract class StellarMinigameMessages extends StellarMessages implements
 	@Override
 	public void loadStellarPluginMessagesVariables() {
 
+		ARENA_CANT_BE_DELETED = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Arena_Cant_Be_Deleted");
+		ARENA_NO_IN_WAITING = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Arena_No_In_Waiting");
+		PLAYER_ALREADY_IN_ARENA = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Player_Already_In_Arena");
+		NO_ARENA = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("No_Arena");
 		NO_ARENA_AVALIBLE = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("No_Arena_Avalible");
 		ARENA_JOIN = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Arena_Join");
 		ARENA_LEAVE = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Arena_Leave");
@@ -47,7 +59,7 @@ public abstract class StellarMinigameMessages extends StellarMessages implements
 		PLAYER_JOIN_ARENA = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Player_Join_Arena");
 		PLAYER_LEAVE_ARENA = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Player_Leave_Arena");
 
-		// Arena status messages
+		// StellarArena status messages
 
 		ARENA_STATUS_WAITING = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Arena_Status_Waiting");
 		ARENA_STATUS_STARTING = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Arena_Status_Starting");

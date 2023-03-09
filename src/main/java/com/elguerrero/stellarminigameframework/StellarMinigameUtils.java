@@ -2,33 +2,11 @@ package com.elguerrero.stellarminigameframework;
 
 import com.elguerrero.stellarframework.utils.StellarUtils;
 import com.elguerrero.stellarminigameframework.config.StellarMinigameMessages;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.*;
 
 public abstract class StellarMinigameUtils implements ArenaStructure {
-
-
-	/**
-	 * The player join a random arena
-	 */
-	public static void joinRandomArena(Player player) {
-
-		List<Arena> arenasList = Arena.getARENAS_LIST();
-
-		if (arenasList.isEmpty()) {
-
-			StellarUtils.sendMessagePlayer(player, StellarMinigameMessages.getNO_ARENA_AVALIBLE());
-
-		} else {
-
-			Arena randomArena = arenasList.get(new Random().nextInt(arenasList.size()));
-
-			randomArena.playerJoinArena(player);
-
-		}
-	}
 
 	/**
 	 * Method for check if a player is in an arena
@@ -38,7 +16,7 @@ public abstract class StellarMinigameUtils implements ArenaStructure {
 	 */
 	public static boolean playerIsInAnArena(Player player) {
 
-		if (Arena.getPLAYERS_IN_ARENAS().containsKey(player.getUniqueId())) {
+		if (StellarArena.getPLAYERS_IN_ARENAS().containsKey(player.getUniqueId())) {
 			return true;
 		} else {
 			return false;
@@ -52,9 +30,9 @@ public abstract class StellarMinigameUtils implements ArenaStructure {
 	 * @param player - The player to check
 	 * @return - The name of the arena
 	 */
-	public static Arena inWhichArenaIsThePlayer(Player player) {
+	public static StellarArena inWhichArenaIsThePlayer(Player player) {
 
-		return Arena.getPLAYERS_IN_ARENAS().get(player.getUniqueId());
+		return StellarArena.getPLAYERS_IN_ARENAS().get(player.getUniqueId());
 
 	}
 
@@ -64,9 +42,9 @@ public abstract class StellarMinigameUtils implements ArenaStructure {
 
 	public static void onLoad() {
 
-		StellarUtils.pluginFileExist(Arena.getARENAS_FOLDER(), true);
-		StellarUtils.pluginFileExist(Arena.getARENAS_CONFIG_FILE(), false);
-		StellarUtils.pluginFileExist(Arena.getADDONS_FOLDER(), true);
+		StellarUtils.pluginFileExist(StellarArena.getARENAS_FOLDER(), true);
+		StellarUtils.pluginFileExist(StellarArena.getARENAS_CONFIG_FILE(), false);
+		StellarUtils.pluginFileExist(StellarArena.getADDONS_FOLDER(), true);
 
 
 	}
@@ -80,18 +58,6 @@ public abstract class StellarMinigameUtils implements ArenaStructure {
 	 */
 	public static void writeBasicArenaConfig() {
 
-	}
-
-	/**
-	 * Method for get a list of the names of all the arenas
-	 *
-	 * @return - A list of the names of all the arenas
-	 */
-	public static List<String> getArenaNames() {
-
-		Set<String> arenaNameSet = Arena.getARENASLISTHASHMAP().keySet();
-
-		return new ArrayList<>(arenaNameSet);
 	}
 
 }

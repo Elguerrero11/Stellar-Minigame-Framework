@@ -2,7 +2,7 @@ package com.elguerrero.stellarminigameframework.commands;
 
 import com.elguerrero.stellarframework.StellarPlugin;
 import com.elguerrero.stellarframework.utils.StellarUtils;
-import com.elguerrero.stellarminigameframework.Arena;
+import com.elguerrero.stellarminigameframework.StellarArena;
 import com.elguerrero.stellarminigameframework.StellarMinigameUtils;
 import com.elguerrero.stellarminigameframework.config.StellarMinigameMessages;
 import dev.jorel.commandapi.CommandAPICommand;
@@ -13,8 +13,8 @@ public class StellarMinigameLeaveArena {
 	public static void registerLeaveArenaCommand() {
 
 		new CommandAPICommand(StellarPlugin.getPLUGIN_NAME() + "-leave")
-				.withRequirement(sender -> sender instanceof Player)
-				.withHelp("Leave the" + Arena.getMINIGAME_NAME() + "arena.", "")
+				.withRequirement(sender -> sender instanceof Player && StellarUtils.checkPlayerPermission((Player) sender, "leave", true))
+				.withHelp("Leave the " + StellarArena.getMINIGAME_NAME() + " arena.", "")
 				.executes((sender, args) -> {
 
 					Player Player = (Player) sender;
@@ -29,4 +29,5 @@ public class StellarMinigameLeaveArena {
 				.register();
 
 	}
+
 }

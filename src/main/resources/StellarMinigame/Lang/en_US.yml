@@ -36,6 +36,7 @@ Messages_Version: 1.0
 
 Player_Join_Arena: "&aThe player &e%player% &ahas joined the arena."
 Player_Leave_Arena: "&aThe player &e%player% &ahas left the arena."
+Player_Already_In_Arena: "&cYou are already in an arena."
 
 No_Arena: "&cThere is no arena with that name."
 No_Arena_Avalible: "&cThere is no arenas avalible."
@@ -45,6 +46,8 @@ There_Is_Only_One_Arena: "&cThere is only one arena avalible, so you have been j
 Arena_Join: "&aYou have joined the arena &e%arena_name%&a."
 Arena_Leave: "&aYou have left the arena &e%arena_name%&a."
 Arena_Already_Exist: "&cThere is already an arena with that name."
+Arena_No_In_Waiting: "&cThe arena is not in waiting status."
+Arena_Cant_Be_Deleted: "&cThe arena can't be deleted because have players in it."
 
 Not_In_Arena: "&cYou are not in an arena so you can't leave."
 
