@@ -49,6 +49,10 @@ Arena_Already_Exist: "&cThere is already an arena with that name."
 Arena_No_In_Waiting: "&cThe arena is not in waiting status."
 Arena_Cant_Be_Deleted: "&cThe arena can't be deleted because have players in it."
 
+# Can have %arena_min_players% placeholder
+# Too %players_needed_for_min_players% placeholder
+Countdown_Cancelled: "&cThe arena need more players to start."
+
 Not_In_Arena: "&cYou are not in an arena so you can't leave."
 
 Arena_Status_Waiting: "&aWaiting"
@@ -56,3 +60,43 @@ Arena_Status_Starting: "&eStarting"
 Arena_Status_Playing: "&ePlaying"
 Arena_Status_Ending: "&cEnding"
 Arena_Status_Restarting: "&cRestarting"
+
+
+# The format for each number of countdown
+# Normally is used with the Send_Cooldown_Message_In_All_Numbers option for send each number with that format
+
+Countdown_Number_Format: "&6_-&e%time%&6-_&r"
+
+
+# The list of numbers with each one format for send in the countdown message for each message type
+# If Send_Cooldown_Message_In_All_Numbers is true, this list will be used only for send each number message if exist
+# The countdown is in seconds
+# You can put any number but have be equal or less than the countdown time in the config
+# If you want to have a list empty just put []
+# You can get some unicodes types of numbers here: https://www.messletters.top/2021/12/messletters-number-symbols.html
+# Each number must not be repeated in each list or will show a error
+# If a number is like - 15: " " empty, will be sended the Countdown_Number_Format with the number with the number type selected in the config ~ Move to more specific documentation
+# If you want to replace the number with the type of number choosed in Countdown_Number_Type
+# You can put the number like - 15: "%time%" and it will be replaced with the number
+# Too with the %time% placeholder it will use the format of Countdown_Number_Format
+
+
+Chat_Numbers_To_Send_Countdown_Message: []
+
+Title_Numbers_To_Send_Countdown_Message: []
+
+SubTitle_Numbers_To_Send_Countdown_Message:
+
+  - 60: "&e60"
+  - 30: "&e30"
+  - 20: "&620"
+  - 10: "&c10"
+  - 5: "&45"
+  - 4: "&44"
+  - 3: "&43"
+  - 2: "&42"
+  - 1: "&41"
+
+ActionBar_Numbers_To_Send_Countdown_Message:
+
+  - 5: "&eThe game will start in 5 seconds!"

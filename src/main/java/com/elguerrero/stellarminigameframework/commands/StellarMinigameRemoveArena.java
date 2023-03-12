@@ -2,9 +2,7 @@ package com.elguerrero.stellarminigameframework.commands;
 
 import com.elguerrero.stellarframework.StellarPlugin;
 import com.elguerrero.stellarframework.utils.StellarUtils;
-import com.elguerrero.stellarminigameframework.ArenaStatus;
 import com.elguerrero.stellarminigameframework.StellarArena;
-import com.elguerrero.stellarminigameframework.StellarMinigameUtils;
 import com.elguerrero.stellarminigameframework.config.StellarMinigameMessages;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.arguments.ArgumentSuggestions;

@@ -1,9 +1,38 @@
 # General config for each StellarPlugin
 
-# The cooldown time for each arena to start when the arena have the min players
-Cooldown: 10
+
 # Choose if the arenas have a wait lobby or not
 Waiting_Lobby: true
+
+# The cooldown time for each arena to start when the arena have the min players
+# The time is in seconds
+Countdown: 60
+
+# What types of cooldown messages are sended to the players in the lobby when waiting for the arena to start
+
+Countdown_Title_Message_Enabled: false
+Countdown_SubTitle_Message_Enabled: true
+Countdown_ActionBar_Message_Enabled: false
+Countdown_Chat_Message_Enabled: false
+Countdown_XPBar_Message_Enabled: false
+
+Send_Countdown_Message_In_All_Numbers: false
+
+# The type of number that the countdown will show
+# The most are using unicode
+#
+# The avalible types are: Type 1 - 1(Normal number) | Type 2 - ➀ | Type 3 - ⓵ | Type 4 - ① | Type 5 - ➊ | Type 6 - ¹ Type 7 - ₁ | Type 8 - ⑴
+# The type 2 and 3 have from the number 1 to 10 included that numbers
+# The type 4 have from the number 0 to 20 included that numbers
+# The type 5 have from the number 0 to 10 included that numbers
+# The type 6 and 7 dont have the number 10
+# The type 8 have from the number 1 to 20 included that numbers
+#
+# If the type is not one of this types, the default one 1 will be used and a message will be send to the console
+Countdown_Number_Type: "1"
+
+
+# The general config part
 
 
 # The language that the plugin uses, if the language is not found, it will use the default language

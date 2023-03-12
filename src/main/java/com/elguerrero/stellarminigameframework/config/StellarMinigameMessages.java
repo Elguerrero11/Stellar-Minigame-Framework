@@ -6,6 +6,9 @@ import com.elguerrero.stellarframework.config.StellarMessages;
 import com.elguerrero.stellarframework.config.StellarMessagesManager;
 import lombok.Getter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class StellarMinigameMessages extends StellarMessages implements StellarMessagesManager {
 
 	@Getter
@@ -31,6 +34,9 @@ public abstract class StellarMinigameMessages extends StellarMessages implements
 	@Getter
 	private static String ARENA_CANT_BE_DELETED = null;
 
+	@Getter
+	private static String COUNTDOWN_CANCELLED = null;
+
 	// StellarArena status messages
 
 	@Getter
@@ -43,6 +49,25 @@ public abstract class StellarMinigameMessages extends StellarMessages implements
 	private static String ARENA_STATUS_ENDING = null;
 	@Getter
 	private static String ARENA_STATUS_RESTARTING = null;
+
+	// Messages related to the countdown
+
+	@Getter
+	private static String COUNTDOWN_NUMBER_FORMAT = null;
+
+
+	@Getter
+	private static HashMap<Integer, String> CHAT_NUMBERS_TO_SEND_COOLDOWN_MESSAGE = new HashMap<>();
+
+	@Getter
+	private static HashMap<Integer, String> TITLE_NUMBERS_TO_SEND_COOLDOWN_MESSAGE = new HashMap<>();
+
+	@Getter
+	private static HashMap<Integer, String> SUBTITLE_NUMBERS_TO_SEND_COOLDOWN_MESSAGE = new HashMap<>();
+
+	@Getter
+	private static HashMap<Integer, String> ACTIONBAR_NUMBERS_TO_SEND_COOLDOWN_MESSAGE = new HashMap<>();
+
 
 	@Override
 	public void loadStellarPluginMessagesVariables() {
@@ -58,6 +83,7 @@ public abstract class StellarMinigameMessages extends StellarMessages implements
 		NOT_IN_ARENA = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Not_In_Arena");
 		PLAYER_JOIN_ARENA = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Player_Join_Arena");
 		PLAYER_LEAVE_ARENA = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Player_Leave_Arena");
+		COUNTDOWN_CANCELLED = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Countdown_Cancelled");
 
 		// StellarArena status messages
 
@@ -66,6 +92,39 @@ public abstract class StellarMinigameMessages extends StellarMessages implements
 		ARENA_STATUS_PLAYING = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Arena_Status_Playing");
 		ARENA_STATUS_ENDING = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Arena_Status_Ending");
 		ARENA_STATUS_RESTARTING = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Arena_Status_Restarting");
+
+		// Messages related to the countdown
+
+		COUNTDOWN_NUMBER_FORMAT = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Countdown_Number_Format");
+
+		StellarLangManager.getSELECTED_LANGUAGE_FILE().getList("Chat_Numbers_To_Send_Cooldown_Message").forEach(map -> {
+			Map.Entry<?, ?> entry = ((HashMap<?, ?>) map).entrySet().iterator().next();
+			Integer number = entry.getKey() instanceof Number ? ((Number) entry.getKey()).intValue() : 0;
+			String message = entry.getValue().toString();
+			CHAT_NUMBERS_TO_SEND_COOLDOWN_MESSAGE.put(number, message);
+		});
+
+		StellarLangManager.getSELECTED_LANGUAGE_FILE().getList("Title_Numbers_To_Send_Cooldown_Message").forEach(map -> {
+			Map.Entry<?, ?> entry = ((HashMap<?, ?>) map).entrySet().iterator().next();
+			Integer number = entry.getKey() instanceof Number ? ((Number) entry.getKey()).intValue() : 0;
+			String message = entry.getValue().toString();
+			TITLE_NUMBERS_TO_SEND_COOLDOWN_MESSAGE.put(number, message);
+		});
+
+		StellarLangManager.getSELECTED_LANGUAGE_FILE().getList("Subtitle_Numbers_To_Send_Cooldown_Message").forEach(map -> {
+			Map.Entry<?, ?> entry = ((HashMap<?, ?>) map).entrySet().iterator().next();
+			Integer number = entry.getKey() instanceof Number ? ((Number) entry.getKey()).intValue() : 0;
+			String message = entry.getValue().toString();
+			SUBTITLE_NUMBERS_TO_SEND_COOLDOWN_MESSAGE.put(number, message);
+		});
+
+		StellarLangManager.getSELECTED_LANGUAGE_FILE().getList("Actionbar_Numbers_To_Send_Cooldown_Message").forEach(map -> {
+			Map.Entry<?, ?> entry = ((HashMap<?, ?>) map).entrySet().iterator().next();
+			Integer number = entry.getKey() instanceof Number ? ((Number) entry.getKey()).intValue() : 0;
+			String message = entry.getValue().toString();
+			ACTIONBAR_NUMBERS_TO_SEND_COOLDOWN_MESSAGE.put(number, message);
+		});
+
 
 	}
 

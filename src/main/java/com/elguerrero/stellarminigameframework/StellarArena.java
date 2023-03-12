@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.util.*;
 
-public abstract class StellarArena {
+public abstract class StellarArena implements ArenaOptions, ArenaStructure {
 
 	// General variables of this minigame plugin
 
@@ -47,8 +47,6 @@ public abstract class StellarArena {
 
 
 
-
-
 	// Variables for each arena
 
 	@Getter
@@ -59,10 +57,10 @@ public abstract class StellarArena {
 	private int maxPlayers = 6;
 
 	@Getter
-	private int cooldownTime = StellarMinigameConfig.getCOOLDOWN_SECONDS();
+	private Countdown countdown = new Countdown(this);
 
 	@Setter
-	private ArenaStatus arenaStatus = ArenaStatus.WAITING;
+	private ArenaStatus arenaStatus = null;
 
 	/**
 	 * This variable will be null if the Wait_Lobby option in the config is false
@@ -101,6 +99,21 @@ public abstract class StellarArena {
 
 		StellarUtils.sendMessagePlayer(player, StellarMinigameMessages.getARENA_JOIN().replaceAll("%arena%", arenaName));
 
+		if (this.countdown.getIsRunning()){
+
+			if (this.getPlayersInThisArena().size() == this.getMinPlayers()){
+
+				this.startCountdown();
+
+			} else if (this.getPlayersInThisArena().size() >= this.getMaxPlayers()/2) {
+
+				this.countdown.setRemainingTime(30);
+
+			}
+
+		}
+
+
 	}
 
 	public void playerLeaveArena(Player player) {
@@ -116,6 +129,18 @@ public abstract class StellarArena {
 
 		StellarUtils.sendMessagePlayer(player, StellarMinigameMessages.getARENA_LEAVE().replaceAll("%arena%", arenaName));
 
+		if (this.countdown.getIsRunning()){
+
+			if (this.getPlayersInThisArena().size() < this.getMinPlayers()){
+
+				StellarMinigameUtils.sendChatMessageToArenaPlayers(this, StellarMinigameMessages.getCOUNTDOWN_CANCELLED());
+				this.countdown.cancel();
+
+			}
+
+		}
+
+
 	}
 
 	/**
@@ -126,6 +151,31 @@ public abstract class StellarArena {
 		ARENAS_LIST.remove(this);
 		ARENAS_LIST_HASHMAP.remove(this.arenaName);
 		ARENAS_NAMES_LIST.remove(this.arenaName);
+
+	}
+
+	/**
+	 * Restart the arena
+	 */
+
+	public void restartArena(){
+
+		this.arenaStatus = ArenaStatus.RESTARTING;
+		this.playersInThisArena.clear();
+		this.arenaStatus = ArenaStatus.WAITING;
+
+	}
+
+	/**
+	 * Start the countdown
+	 *
+	 * TODO: Maybe move this method to the premade pregame structure method
+	 */
+
+	public void startCountdown(){
+
+		this.countdown.runTaskTimerAsynchronously(StellarPlugin.getPLUGIN_INSTANCE(), 0, 20);
+		this.countdown.setIsRunning(true);
 
 	}
 
