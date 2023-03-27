@@ -19,7 +19,7 @@ public class StellarMinigameForceStartArena {
 						return true;
 					}
 				})
-				.withHelp("Force the " + StellarArena.getMINIGAME_NAME() + " arena to start now.", "")
+				.withHelp("Force the " + StellarPlugin.getPLUGIN_NAME() + " arena to start now.", "")
 				.executes((sender, args) -> {
 
 					if (StellarUtils.senderIsConsole(sender)) {

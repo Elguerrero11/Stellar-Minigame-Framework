@@ -18,7 +18,7 @@ public class StellarMinigameJoinArena {
 
 		new CommandAPICommand(StellarPlugin.getPLUGIN_NAME() + "-join")
 				.withRequirement(sender -> sender instanceof Player && StellarUtils.checkPlayerPermission((Player) sender, "join", true))
-				.withHelp("Leave the " + StellarArena.getMINIGAME_NAME() + " arena.", "")
+				.withHelp("Leave the " + StellarPlugin.getPLUGIN_NAME() + " arena.", "")
 				.withArguments(new StringArgument("<arena_name>")
 				.replaceSuggestions((ArgumentSuggestions) StellarArena.getARENAS_NAMES_LIST()))
 				.executes((sender, args) -> {

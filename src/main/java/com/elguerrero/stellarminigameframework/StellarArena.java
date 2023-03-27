@@ -4,6 +4,7 @@ import com.elguerrero.stellarframework.StellarPlugin;
 import com.elguerrero.stellarframework.utils.StellarUtils;
 import com.elguerrero.stellarminigameframework.config.StellarMinigameConfig;
 import com.elguerrero.stellarminigameframework.config.StellarMinigameMessages;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
@@ -16,9 +17,6 @@ import java.util.*;
 public abstract class StellarArena implements ArenaOptions, ArenaStructure {
 
 	// General variables of this minigame plugin
-
-	@Getter
-	private static String MINIGAME_NAME = "StellarMinigame";
 
 	@Getter
 	private static final File ARENAS_FOLDER = new File(StellarPlugin.getPLUGIN_FOLDER() + "/Arenas");
@@ -69,6 +67,9 @@ public abstract class StellarArena implements ArenaOptions, ArenaStructure {
 	private Location waitingLobbySpawn = null;
 
 	private Set<UUID> playersInThisArena = new HashSet<>();
+
+	@Getter
+	private String minigameName = StellarPlugin.getPLUGIN_NAME();
 
 
 	public StellarArena(String arenaName) {

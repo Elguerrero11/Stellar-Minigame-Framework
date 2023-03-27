@@ -21,7 +21,7 @@ public class StellarMinigameRemoveArena {
 						return false;
 					}
 				})
-				.withHelp("Remove a " + StellarArena.getMINIGAME_NAME() + " arena.", "")
+				.withHelp("Remove a " + StellarPlugin.getPLUGIN_NAME() + " arena.", "")
 				.withArguments(new StringArgument("<arena_name>")
 						.replaceSuggestions((ArgumentSuggestions) StellarArena.getARENAS_NAMES_LIST()))
 				.executes((sender, args) -> {

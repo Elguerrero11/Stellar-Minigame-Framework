@@ -21,11 +21,9 @@ public abstract class StellarMinigameUtils implements ArenaStructure {
 	 */
 	public static boolean playerIsInAnArena(Player player) {
 
-		if (StellarArena.getPLAYERS_IN_ARENAS().containsKey(player.getUniqueId())) {
-			return true;
-		} else {
-			return false;
-		}
+		UUID playerUUID = player.getUniqueId();
+
+		return StellarArena.getPLAYERS_IN_ARENAS().containsKey(playerUUID);
 
 	}
 
@@ -465,5 +463,10 @@ public abstract class StellarMinigameUtils implements ArenaStructure {
 
 	}
 
+	public static boolean playerArenaIsInThisArenaMinigame(Player player, StellarArena Arena, String minigameName){
+
+		return Arena.getMinigameName().equals(minigameName);
+
+	}
 
 }

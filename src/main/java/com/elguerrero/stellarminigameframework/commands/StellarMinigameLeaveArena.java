@@ -14,7 +14,7 @@ public class StellarMinigameLeaveArena {
 
 		new CommandAPICommand(StellarPlugin.getPLUGIN_NAME() + "-leave")
 				.withRequirement(sender -> sender instanceof Player && StellarUtils.checkPlayerPermission((Player) sender, "leave", true))
-				.withHelp("Leave the " + StellarArena.getMINIGAME_NAME() + " arena.", "")
+				.withHelp("Leave the " + StellarPlugin.getPLUGIN_NAME() + " arena.", "")
 				.executes((sender, args) -> {
 
 					Player Player = (Player) sender;
