@@ -2,9 +2,7 @@ package com.elguerrero.stellarminigameframework.commands;
 
 import com.elguerrero.stellarframework.StellarPlugin;
 import com.elguerrero.stellarframework.utils.StellarUtils;
-import com.elguerrero.stellarminigameframework.StellarArena;
 import dev.jorel.commandapi.CommandAPICommand;
-import jdk.nashorn.internal.ir.IfNode;
 import org.bukkit.entity.Player;
 
 public class StellarMinigameForceStartArena {

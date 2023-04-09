@@ -1,11 +1,8 @@
 package com.elguerrero.stellarminigameframework;
 
 import com.elguerrero.stellarframework.utils.StellarUtils;
-import com.elguerrero.stellarminigameframework.ArenaStructure;
-import com.elguerrero.stellarminigameframework.StellarArena;
 import com.elguerrero.stellarminigameframework.config.StellarMinigameConfig;
 import com.elguerrero.stellarminigameframework.config.StellarMinigameMessages;
-import jdk.nashorn.internal.ir.IfNode;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

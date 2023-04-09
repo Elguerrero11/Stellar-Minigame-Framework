@@ -72,6 +72,8 @@ public abstract class StellarMinigameMessages extends StellarMessages implements
 	@Override
 	public void loadStellarPluginMessagesVariables() {
 
+		// Temp notes to fix later when I change StellarFramework
+		/*
 		ARENA_CANT_BE_DELETED = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Arena_Cant_Be_Deleted");
 		ARENA_NO_IN_WAITING = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Arena_No_In_Waiting");
 		PLAYER_ALREADY_IN_ARENA = StellarLangManager.getSELECTED_LANGUAGE_FILE().getString("Player_Already_In_Arena");
@@ -124,6 +126,8 @@ public abstract class StellarMinigameMessages extends StellarMessages implements
 			String message = entry.getValue().toString();
 			ACTIONBAR_NUMBERS_TO_SEND_COOLDOWN_MESSAGE.put(number, message);
 		});
+
+       */
 
 
 	}

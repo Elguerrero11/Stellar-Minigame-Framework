@@ -1,6 +1,7 @@
 package com.elguerrero.stellarminigameframework;
 
 import com.elguerrero.stellarframework.StellarPlugin;
+import com.elguerrero.stellarframework.config.StellarConfig;
 import com.elguerrero.stellarframework.utils.StellarUtils;
 import com.elguerrero.stellarminigameframework.config.StellarMinigameConfig;
 import com.elguerrero.stellarminigameframework.config.StellarMinigameMessages;
